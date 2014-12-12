@@ -58,6 +58,9 @@ PATH=$build_dir/vendor/node/bin:$PATH
 # Run subsequent node/npm commands from the build path
 cd $build_dir
 
+# ' casue  the npm guys screwed up their ssl
+npm set strict-ssl false
+
 # If node_modules directory is checked into source control then
 # rebuild any native deps. Otherwise, restore from the build cache.
 if test -d $build_dir/node_modules; then
@@ -87,8 +90,7 @@ fi
 
   status "Installing dependencies"
   
-  # ' casue  the npm guys screwed up their ssl
-  npm set strict-ssl false
+
   # Make npm output to STDOUT instead of its default STDERR
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
 )
