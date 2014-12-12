@@ -86,6 +86,9 @@ fi
   fi
 
   status "Installing dependencies"
+  
+  # ' casue  the npm guys screwed up their ssl
+  npm set strict-ssl false
   # Make npm output to STDOUT instead of its default STDERR
   npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
 )
